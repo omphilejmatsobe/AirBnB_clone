@@ -3,7 +3,6 @@
 defines all common attributes/methods for other classes
 """
 
-
 import uuid
 from datetime import datetime
 
@@ -30,6 +29,7 @@ class BaseModel():
 
     def __str__(self):
         """string representation of BaseModel instance"""
+
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id,
                                      self.__dict__)
 
@@ -41,8 +41,8 @@ class BaseModel():
     def to_dict(self):
         """dictionary representation of instance"""
 
-        updated_dic = dict(self.__dict__)
-        updated_dic['created_at'] = self.__dict__['created_at'].isoformat()
-        updated_dic['updated_at'] = self.__dict__['updated_at'].isoformat()
-        updated_dic['__class__'] = self.__class__.__name__
-        return (updated_dic)
+        updatedDict = dict(self.__dict__)
+        updatedDict['created_at'] = self.__dict__['created_at'].isoformat()
+        updatedDict['updated_at'] = self.__dict__['updated_at'].isoformat()
+        updatedDict['__class__'] = self.__class__.__name__
+        return (updatedDict)
