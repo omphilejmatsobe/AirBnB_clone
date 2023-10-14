@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+Test for the Basemodel class
+"""
 from models.base_model import BaseModel
 
 my_model = BaseModel()
