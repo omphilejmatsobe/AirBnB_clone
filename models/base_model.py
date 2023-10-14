@@ -1,13 +1,12 @@
 #!/usr/bin/python3
-
 """
 defines all common attributes/methods for other classes
 """
 
 
-import models
 import uuid
 from datetime import datetime
+import models
 
 
 class BaseModel():
@@ -32,7 +31,7 @@ class BaseModel():
             models.storage.new(self)
 
     def __str__(self):
-        """string of BaseModel instance"""
+        """string representation of BaseModel instance"""
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id,
                                      self.__dict__)
 
