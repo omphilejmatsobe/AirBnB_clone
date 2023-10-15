@@ -8,6 +8,7 @@ import os
 from models.base_model import BaseModel
 from models.user import User
 
+
 class FileStorage():
     """
     serializes instances to a JSON file and
@@ -37,7 +38,6 @@ class FileStorage():
         with open(FileStorage.__file_path, 'w') as f:
             json.dump(
                 {k: v.to_dict() for k, v in FileStorage.__objects.items()}, f)
-
 
     def reload(self):
         """
