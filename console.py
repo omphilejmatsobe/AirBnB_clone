@@ -11,9 +11,7 @@ from models import storage
 
 from models.base_model import BaseModel
 
-all_classes = {'BaseModel': BaseModel, 'User': User,
-               'Amenity': Amenity, 'City': City, 'State': State,
-               'Place': Place, 'Review': Review}
+all_classes = {'BaseModel': BaseModel, 'User': User}
 
 
 class HBNBCommand(cmd.Cmd):
