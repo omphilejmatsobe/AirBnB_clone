@@ -12,7 +12,10 @@ from models import storage
 from models.base_model import BaseModel
 from models.user import User
 
-all_classes = {'BaseModel': BaseModel, 'User': User}
+
+all_classes = {'BaseModel': BaseModel, 'User': User,
+               'State': State, 'City': City, 'Amenity': Amenity,
+               'Place': Place, 'Review': Review}
 
 
 class HBNBCommand(cmd.Cmd):
