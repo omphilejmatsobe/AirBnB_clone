@@ -27,7 +27,8 @@ class HBNBCommand(cmd.Cmd):
         handles the help command
         """
 
-        return True
+        _help= super().do_help(arg)
+        return _help
 
     def do_quit(self, line):
         """
