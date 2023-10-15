@@ -9,10 +9,12 @@ import models
 import json
 
 
-class HBNBCommand(cmd.cmd):
+class HBNBCommand(cmd.Cmd):
     """
     this is the class for the command intepreter
     """
+
+    prompt = '(hbnb)'
 
     def emptyline(self):
         """
