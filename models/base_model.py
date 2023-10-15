@@ -7,12 +7,12 @@ import uuid
 from datetime import datetime
 import models
 
+
 class BaseModel():
     """class Base for the all the model"""
 
     def __init__(self, *args, **kwargs):
         """class constructor init"""
-
 
         if kwargs:
             kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
