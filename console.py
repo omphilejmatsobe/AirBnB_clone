@@ -7,6 +7,7 @@ this is the console module for the console
 import cmd
 import models
 import json
+import re
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
@@ -36,7 +37,7 @@ class HBNBCommand(cmd.Cmd):
         classes = ["BaseModel", "User", "State", "City",
                    "Amenity", "Place", "Review"]
 
-        msg = ["** class name missing **",
+        message = ["** class name missing **",
                "** class doesn't exist **",
                "** instance id missing **",
                "** no instance found **",
@@ -44,20 +45,20 @@ class HBNBCommand(cmd.Cmd):
                "** value missing **"]
 
         if not line:
-            print(msg[0])
+            print(message[0])
             return 1
 
         args = line.split()
 
         if num_of_args >= 1 and args[0] not in classes:
-            print(msg[1])
+            print(message[1])
             return 1
 
         elif num_of_args == 1:
             return 0
 
         if num_of_args >= 2 and len(args) < 2:
-            print(msg[2])
+            print(message[2])
             return 1
 
         store = storage.all()
@@ -68,18 +69,18 @@ class HBNBCommand(cmd.Cmd):
         key = args[0] + '.' + args[1]
 
         if num_of_args >= 2 and key not in store:
-            print(msg[3])
+            print(message[3])
             return 1
 
         elif num_of_args == 2:
             return 0
 
         if num_of_args >= 4 and len(args) < 3:
-            print(msg[4])
+            print(message[4])
             return 1
 
         if num_of_args >= 4 and len(args) < 4:
-            print(msg[5])
+            print(message[5])
             return 1
 
         return 0
@@ -219,6 +220,61 @@ class HBNBCommand(cmd.Cmd):
 
         setattr(store[x], attr_k, attr_v)
         storage.save()
+
+    def do_count(self, class_n):
+        """
+         counts instances of a class
+        """
+        count = 0
+        for instance_object in storage.all().values():
+            if instance_object.__class__.__name__ == class_n:
+                count += 1
+        print(count)
+
+    def default(self, line):
+        """
+            handles the following commands:
+            <class name>.all()
+            <class name>.count()
+            <class name>.show(<id>)
+            <class name>.destroy(<id>)
+            <class name>.update(<id>, <attribute name>, <attribute value>)
+            <class name>.update(<id>, <dictionary representation)
+        """
+
+        classes = ["BaseModel", "User", "State", "City",
+                   "Amenity", "Place", "Review"]
+
+
+        commands = {"all": self.do_all,
+                    "count": self.do_count,
+                    "show": self.do_show,
+                    "destroy": self.do_destroy,
+                    "update": self.do_update}
+
+        args = re.match(r"^(\w+)\.(\w+)\((.*)\)", line)
+        if args:
+            args = args.groups()
+        if not args or len(args) < 2 or args[0] not in classes \
+            or args[1] not in commands.keys():
+            super().default(line)
+            return
+
+        if args[1] in ["all", "count"]:
+            commands[args[1]](args[0])
+        elif args[1] in ["show", "destroy"]:
+            commands[args[1]](args[0] + ' ' + args[2])
+        elif args[1] == "update":
+            params = re.match(r"\"(.+?)\", (.+)", args[2])
+            if params.groups()[1][0] == '{':
+                dic_p = eval(params.groups()[1])
+                for k, v in dic_p.items():
+                    commands[args[1]](args[0] + " " + params.groups()[0] +
+                                      " " + k + " " + str(v))
+            else:
+                rest = params.groups()[1].split(", ")
+                commands[args[1]](args[0] + " " + params.groups()[0] + " " +
+                                  rest[0] + " " + rest[1])
 
 
 if __name__ == '__main__':
