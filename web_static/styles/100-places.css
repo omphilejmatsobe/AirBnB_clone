@@ -103,3 +103,62 @@
     border-top: 1px solid #DDDDDD;
     margin-top: 15px;
 }
+
+.ammenities{
+    margin-top: 40px;
+}
+
+.reviews{
+    margin-top: 40px;
+    width: 100%;
+
+}
+
+li{
+    list-style: none;
+}
+
+.amenities {
+    width: 100%;
+}
+
+.amenities > ul > li{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+
+.reviews > ul, .amenities > ul{
+    border-top: 1px solid #DDDDDD;
+    margin: 0;
+    padding: 0;
+}
+
+.reviews > ul > li{
+    margin: 0;
+    padding: 0;
+}
+
+.amenitiesImgOne{
+    background: url("../images/icon.png");
+    display: block;
+    height: 20px;
+    width: 20px;
+    margin: auto 5px;
+    margin-left: 0;
+}
+
+.amenitiesImgTwo{
+    background: url("../images/icon.png");
+    display: block;
+    height: 20px;
+    width: 20px;
+    margin: auto 5px;
+    margin-left: 0;
+}
+
+.amenities > ul > li > h3{
+    margin: auto 0;
+}
+
