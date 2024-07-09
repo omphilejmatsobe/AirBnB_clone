@@ -4,10 +4,10 @@
 This is the class that defines all common attributes and methods
 """
 
-import UUID
-import datetime
+import uuid
+from datetime import datetime
 
-class Base:
+class BaseModel:
 
     def __int__ (self):
         """
@@ -22,3 +22,11 @@ class Base:
         Method to update instance attributes
         """
         self.updated_at = datetime.utcnow()
+
+    def to_dict(self):
+        """
+        Method that return a dictionary containing all key/values
+        of __dict__ of the instance
+        """
+
+        pass
