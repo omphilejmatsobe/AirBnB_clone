@@ -23,7 +23,7 @@ class BaseModel:
         type(self).__counter += 1;
 
     def __str__(self):
-        return f"[{type(self).__name__}] [{self.id}] [{self.__dict__};
+        return f"[{type(self).__name__}] [{self.id}] [{self.__dict__}";
 
     def __del__(self):
         BaseModel.__counter -= 1;
