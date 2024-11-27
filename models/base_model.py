@@ -33,6 +33,7 @@ class BaseModel:
         with the current datetime
         """
         self.updated_at = datetime.now();
+        return self.updated_at
 
     def getModelInstanceCounter(self):
         return BaseModel.__counter;
