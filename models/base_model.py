@@ -2,7 +2,6 @@
 
 import uuid;
 from datetime import datetime;
-import models;
 
 class BaseModel:
     """
@@ -35,9 +34,5 @@ class BaseModel:
         """
         self.updated_at = datetime.now();
 
-    def to_dict(self):
-        
-
-    @staticmethod
-    def ModelInstance(self):
+    def getModelInstanceCounter(self):
         return BaseModel.__counter;
