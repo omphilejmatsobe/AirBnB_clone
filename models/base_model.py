@@ -28,7 +28,6 @@ class BaseModel:
     def __del__(self):
         BaseModel.__counter -= 1;
 
-    @classmethod
     def save(self):
         """
         This method updates the "update_at" variable
@@ -36,9 +35,8 @@ class BaseModel:
         """
         self.updated_at = datetime.now();
 
-    @classmethod
     def to_dict(self):
-        return self.__dict__;
+        
 
     @staticmethod
     def ModelInstance(self):
