@@ -1,39 +1,46 @@
-#!/usr/bin/python3
+#!/user/bin/python3
 
-import uuid;
-from datetime import datetime;
+from UUID import UUID4
+from datetime import datetime
+
+"""
+"""
 
 class BaseModel:
     """
-    This class defines all methods for other classes of
-    the program
+        This class is the model that defines all common
+        attributes/methods for other classes of the 
+        application.
     """
 
-    __counter = 0;
-
-    def __init__(self):
+    def __str__:
         """
-        This method is a constructor which is used to initialize
-        all variables of the class instance
+            Method that prints:
+            * Class Name
+            * Instance ID
+            * Instance Dictionary
         """
-        self.id  = str(uuid.uuid4());
-        self.created_at = datetime.now();
-        self.updated_at = datetime.now();
-        type(self).__counter += 1;
 
-    def __str__(self):
-        return "[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__);
-
-    def __del__(self):
-        BaseModel.__counter -= 1;
+        print(f"[{self.__class__.__name__}] ({self.id}) <{self.__dict__}>")
 
     def save(self):
         """
-        This method updates the "update_at" variable
-        with the current datetime
+            Method that updates the public instance
+            attribute 'updated_at' with the current datetime
         """
-        self.updated_at = datetime.now();
-        return self.updated_at
 
-    def getModelInstanceCounter(self):
-        return BaseModel.__counter;
+        self.updated_at = datetime.now()
+
+    def to_dict(self):
+        """
+            Method that return all key/values containing
+            information on all attributes of the instance
+        """
+
+        info_dict = dict(self.__dict__)
+        info_dict["__class__"] = self.__class__.__name__
+        info_dict["created_at"] = self.created_at
+        info_dict["updated_at"] = self.updated_at
+
+        return (info_dict)
+
