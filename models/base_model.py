@@ -46,10 +46,10 @@ class BaseModel:
             information on all attributes of the instance
         """
 
-        info_dict = dict(self.__dict__)
+        info_dict = self.__dict__.copy()
         info_dict["__class__"] = self.__class__.__name__
-        info_dict["created_at"] = self.created_at
-        info_dict["updated_at"] = self.updated_at
+        info_dict["created_at"] = self.created_at.isoformat()
+        info_dict["updated_at"] = self.updated_at.isoformat()
 
         return (info_dict)
 
