@@ -3,17 +3,26 @@
 from UUID import UUID4
 from datetime import datetime
 
-"""
-"""
-
 class BaseModel:
     """
-        This class is the model that defines all common
-        attributes/methods for other classes of the 
+        This class is the base-model/superclass that defines all common
+        attributes/methods for all the sub-classes of the 
         application.
     """
 
-    def __str__:
+    def __init__(self):
+        """
+            Method acts as a constructor and initializes
+            all attributes of the instace of the class
+        """
+
+        self.created_at = datetime.now()
+        self.updated_at = self.created_at
+        self.__dict__ = {}
+        self.id = UUID4()
+
+
+    def __str__(self):
         """
             Method that prints:
             * Class Name
