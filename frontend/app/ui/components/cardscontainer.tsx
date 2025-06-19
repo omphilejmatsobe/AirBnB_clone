@@ -10,7 +10,7 @@ export default async function Cardscontainer({}) {
 
   return (
     <div className="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
-    {
+      {
         productsData.map((product, idx)=>
         (
             <Product
@@ -22,7 +22,7 @@ export default async function Cardscontainer({}) {
                 salePrice={product.salePrice}
                 imgUrl={product.imgUrl}/>
         ))
-    }
+      }
     </div>
   )
 }
