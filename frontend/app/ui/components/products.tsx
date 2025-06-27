@@ -1,16 +1,10 @@
-"use client"
 
 import { source } from "../icons";
 
 import Cardscontainer from "./cardscontainer";
 import Filterbutton from "./filter/filterbutton";
 
-export default function Products() {
-
-  function sortByDate ()
-  {
-    console.log("Hi")
-  }
+export default async function Products() {
 
     return (
       <section className=" py-8 antialiased dark:bg-gray-900 md:py-12">
@@ -49,9 +43,8 @@ export default function Products() {
               <h2 className="mt-3 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Electronics</h2>
             </div>
             <div className="flex items-center space-x-4">
-              <div>
-                <Filterbutton typeOf="Filter" icon={source.filter}/>
-              </div>
+
+              <Filterbutton typeOf="Filter" icon={source.filter}/>
               
               <Filterbutton typeOf="Sort" icon={source.sort}/>
             </div>

@@ -19,7 +19,10 @@ export default function RootLayout({
         className={`antialiased`}
       >
         <Nav/>
-        {children}
+        <main className="pt-36">
+          {children}
+        </main>
+        
         <Footer/>
       </body>
     </html>

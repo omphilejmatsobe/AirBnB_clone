@@ -9,6 +9,7 @@ type FilterButton =
 {
     typeOf: string
     icon: source
+
 }
 
 export default function Filterbutton({typeOf, icon}: FilterButton) {
