@@ -20,7 +20,9 @@ export enum source
   filter = "/icons/filter.svg",
   dropdown = "/icons/dropdown.svg",
   sort = "/icons/sort.svg",
-  cart = "/icons/shopping-cart.svg"
+  cart = "/icons/shopping-cart.svg",
+  heart = "/icons/heart.svg",
+  add_to_cart = "/icons/add_to_cart.svg"
 }
 
 

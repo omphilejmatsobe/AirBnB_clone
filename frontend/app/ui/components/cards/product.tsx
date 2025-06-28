@@ -1,18 +1,19 @@
 
 import { ProductDetails } from "@/app/lib/types";
 import Image from "next/image";
+import Link from "next/link";
+import { Icon, source } from "../../icons";
 
 export default function Product({name, numberOfRatings, rating, price, salePrice, imgUrl}:ProductDetails) {
 
-  const sale = Math.floor((1 - (price/salePrice)) * 100)
-  
+  const sale = Math.floor((1 - (salePrice/price)) * 100)
 
   return (
     <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
       <div className="h-56 w-full">
-        <a href="#">
+        <Link href="#">
           <Image height={500} width={500} className="mx-auto h-full" src={imgUrl} alt="" />
-        </a>
+        </Link>
       </div>
       <div className="pt-6">
         <div className="mb-4 flex items-center justify-between gap-4">
@@ -22,9 +23,7 @@ export default function Product({name, numberOfRatings, rating, price, salePrice
 
             <button type="button" data-tooltip-target="tooltip-add-to-favorites" className="cursor-pointer rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900">
               <span className="sr-only"> Add to Favorites </span>
-              <svg className="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z" />
-              </svg>
+              <Icon h={20} w={20} icon={source.heart} name="WishList" className=""/>
             </button>
             <div id="tooltip-add-to-favorites" role="tooltip" className="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 " data-popper-placement="top">
               Add to favorites
@@ -33,7 +32,7 @@ export default function Product({name, numberOfRatings, rating, price, salePrice
           </div>
         </div>
 
-        <a href="#" className="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">{name}</a>
+        <Link href="#" className="text-base font-semibold leading-tight text-gray-900 hover:underline">{name}</Link>
 
         <div className={`mt-2 flex items-center gap-2 ${rating > 0 ? "block" : "hidden" }`}>
           <div className="flex items-center">
@@ -52,17 +51,16 @@ export default function Product({name, numberOfRatings, rating, price, salePrice
           <p className="text-sm font-medium text-gray-500">({numberOfRatings})</p>
         </div>
 
-          <div className="flex items-center my-2">
-            <svg className="h-4 w-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
-            </svg>
-            <p className="text-sm font-medium text-gray-500 ">Fast Delivery</p>
-          </div>
-
           <div className="mt-4 flex flex-row gap-x-2 items-center h-fit">
-            <h2 className="text-2xl font-extrabold text-gray-900 ">{`$${Intl.NumberFormat().format(price)}`}</h2>
-            <h2 className={`text-base font-medium  text-gray-400 line-through ${sale > 0 ? "block" : "hidden"}`}>{`$${Intl.NumberFormat().format(salePrice)}`}</h2>
+            <h2 className="text-2xl font-extrabold text-gray-900 ">{`$${Intl.NumberFormat().format(salePrice)}`}</h2>
+            <h2 className={`text-base font-medium  text-gray-400 line-through ${sale > 0 ? "block" : "hidden"}`}>{`$${Intl.NumberFormat().format(price)}`}</h2>
           </div>
+          
+        <button className="cursor-pointer mt-4 border-1 border-gray-300 w-fit h-fit px-4 py-2 gap-2 rounded-[10px] flex flex-row items-center justify-center">
+          <Icon h={16} w={16} className="" icon={source.add_to_cart} name="Add To Cart"/>
+          <h3 className="text-sm">Add to cart</h3>
+          
+        </button>
       </div>
     </div>
   )

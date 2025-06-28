@@ -6,5 +6,4 @@ export type ProductDetails =
     price: number
     salePrice: number
     imgUrl: string
-
 }
