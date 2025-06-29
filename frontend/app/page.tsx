@@ -3,8 +3,8 @@ import Products from "@/app/ui/components/products"
 
 export default function Home() {
   return (
-	<main>
-	    <Products/>
+	<main className="min-h-screen">
+	    
 	</main>
   );
 }

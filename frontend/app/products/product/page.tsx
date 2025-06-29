@@ -2,11 +2,31 @@ import RatingBar from '@/app/ui/components/rating/rating'
 import React from 'react'
 
 export default function page() {
+    const numberOfRatings = 1234
+    const ratingCount:number[] = [176, 79, 0, 21, 957]
+
+    /* Weighted Average */
+
+    const weightedAve  = (numList:number[]) =>
+    {
+        let sumDivisor = 0
+        let sumNumerator = 0
+        for (let idx = 5; idx > 0; idx--)
+        {
+            sumNumerator  += (numList[idx - 1] * idx)
+            sumDivisor += numList[idx - 1]
+        }
+            
+        return (sumNumerator / sumDivisor)
+    }
+
+    const rating = Math.floor(weightedAve(ratingCount))
+
   return (
     <section className="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
         <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0">
             <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
-                <div className="shrink-0 max-w-md lg:max-w-lg mx-auto">
+                <div className="shrink-0 max-w-md lg:max-w-lg mx-auto ">
                     <img className="w-full dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="" />
                     <img className="w-full hidden dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" />
                 </div>
@@ -23,85 +43,36 @@ export default function page() {
                         $1,249.99
                         </p>
 
-                        <div className="flex items-center gap-2 mt-2 sm:mt-0">
-                        <div className="flex items-center gap-1">
-                            <svg
-                            className="w-4 h-4 text-yellow-300"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
+                        <div className="flex flex-row items-center justify-center gap-2 mt-2 sm:mt-0 bg-red">
+                            <div className="flex items-center gap-1">
+                                <div className={` flex items-center gap-2 ${rating > 0 ? "block" : "hidden" }`}>
+                                    <div className="flex items-center">
+                                        {
+                                        Array(5).fill(1).map((star, idx) =>
+                                        (
+                                            <svg key={`Star-${idx}`} className={`h-4 w-4 ${idx < rating ? "text-yellow-400" : "text-gray-300 "}`} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                                            </svg> 
+                                        )
+                                        )
+                                        }
+                                    </div>
+
+                                    <p className="text-sm font-medium text-gray-900 ">{rating}</p>
+                                    <p className="text-sm font-medium text-gray-500">({numberOfRatings})</p>
+                                </div>
+                            </div>
+                            <p
+                                className="text-sm font-medium leading-none text-gray-500 "
                             >
-                            <path
-                                d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"
-                            />
-                            </svg>
-                            <svg
-                            className="w-4 h-4 text-yellow-300"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
+                                {rating+".0"}
+                            </p>
+                            <a
+                                href="#"
+                                className="text-sm font-medium leading-none text-gray-900 underline hover:no-underline"
                             >
-                            <path
-                                d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"
-                            />
-                            </svg>
-                            <svg
-                            className="w-4 h-4 text-yellow-300"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                            >
-                            <path
-                                d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"
-                            />
-                            </svg>
-                            <svg
-                            className="w-4 h-4 text-yellow-300"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                            >
-                            <path
-                                d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"
-                            />
-                            </svg>
-                            <svg
-                            className="w-4 h-4 text-yellow-300"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                            >
-                            <path
-                                d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"
-                            />
-                            </svg>
-                        </div>
-                        <p
-                            className="text-sm font-medium leading-none text-gray-500 dark:text-gray-400"
-                        >
-                            (5.0)
-                        </p>
-                        <a
-                            href="#"
-                            className="text-sm font-medium leading-none text-gray-900 underline hover:no-underline dark:text-white"
-                        >
-                            345 Reviews
-                        </a>
+                                {numberOfRatings}
+                            </a>
                         </div>
                     </div>
 
@@ -109,7 +80,7 @@ export default function page() {
                         <a
                         href="#"
                         title=""
-                        className="flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                        className="flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100  "
                         role="button"
                         >
                         <svg
@@ -135,7 +106,7 @@ export default function page() {
                         <a
                         href="#"
                         title=""
-                        className="text-white mt-4 sm:mt-0 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 flex items-center justify-center"
+                        className="flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
                         role="button"
                         >
                         <svg
@@ -182,11 +153,12 @@ export default function page() {
                         <h2 className='text-2xl font-medium'>Ratings & Reviews</h2>
                         <div className='w-full lg:max-w-sm'>
                             <div className='box flex flex-col gap-y-2 w-full '>
-                                <RatingBar totalRatings={1234} count={957} rating={5}/>
-                                <RatingBar totalRatings={1234} count={21} rating={4}/>
-                                <RatingBar totalRatings={1234} count={0} rating={3}/>
-                                <RatingBar totalRatings={1234} count={79} rating={2}/>
-                                <RatingBar totalRatings={1234} count={176} rating={1}/>
+                                {
+                                    ratingCount.map((rate, idx)=>
+                                    (
+                                       <RatingBar totalRatings={1234} count={ratingCount[4 - idx]} rating={5 - idx}/> 
+                                    ))
+                                }
                             </div>
                         </div>
 
